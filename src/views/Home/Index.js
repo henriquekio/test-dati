@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { getAllProducts } from "../../services/ProductsRequestService";
+import MainContent from "../../components/MainContent";
 
 class Index extends Component {
-
-  async componentDidMount() {
-    const data = await getAllProducts();
-    console.log(data);
-  }
-
   render() {
     return (
-      <div>
-        <h1>NANI</h1>
-      </div>
+      <MainContent>
+        <div className="container">
+          <div className="row">
+            <div className="col s12">
+              <h1>CHUPA MUNDO</h1>
+            </div>
+          </div>
+        </div>
+      </MainContent>
     );
   }
 }
