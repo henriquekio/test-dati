@@ -1,15 +1,17 @@
-import React from 'react';
-import NavbarDefault from "./NavbarDefault";
+import React, { Component } from 'react';
+import NavbarDefault from './NavbarDefault';
 
-function MainContent(props) {
-  return (
-    <>
-      <NavbarDefault/>
-      <main>
-        {props.children}
-      </main>
-    </>
-  );
+class MainContent extends Component {
+  render() {
+    return (
+      <>
+        <NavbarDefault/>
+        <main>
+          {this.props.children}
+        </main>
+      </>
+    );
+  }
 }
 
 export default MainContent;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductsContext from './products-context';
+import { createProducts } from '../../../services/ProductsRequestService';
 
 class ProductsProvider extends Component {
 
@@ -7,12 +8,21 @@ class ProductsProvider extends Component {
     super(props);
 
     this.state = {
-      fetching: false,
-    }
+      fetching: false
+    };
   }
 
   toggleFetching = (fetching = true) => {
     this.setState({ fetching });
+  };
+
+  createProducts = async (products = {}) => {
+    try {
+      this.toggleFetching(true);
+      return await createProducts(products);
+    } finally {
+      this.toggleFetching(false);
+    }
   };
 
   render() {
@@ -20,7 +30,8 @@ class ProductsProvider extends Component {
     return (
       <ProductsContext.Provider value={{
         fetching,
-        toggleFetching: this.toggleFetching
+        toggleFetching: this.toggleFetching,
+        createProducts: this.createProducts
       }}>
         {this.props.children}
       </ProductsContext.Provider>

@@ -1,0 +1,37 @@
+%btn {
+  border-radius: 4px;
+  outline: none;
+  padding: .6em 2em;
+  border: 1.3px solid $color-primary;
+  cursor: pointer;
+  transition: all .3s;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.btn__default {
+  @extend %btn;
+  color: white;
+  background: $color-primary;
+
+  &:focus {
+    background: $color-primary;
+  }
+}
+
+.btn__default--ghost {
+  @extend %btn;
+  color: $color-primary;
+  background: white;
+  border: 1.3px solid $color-primary;
+
+  &:focus {
+    background: white;
+  }
+}

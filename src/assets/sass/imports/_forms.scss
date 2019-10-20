@@ -1,0 +1,39 @@
+
+.form-default {
+  width: 100%;
+
+  label {
+    display: block;
+    margin-bottom: .5em;
+    color: #999ea2;
+    font-size: 16px;
+    line-height: 30px;
+    left: 1.75rem !important;
+
+    &.active {
+      transform: translateY(-15px) scale(0.9) !important;
+      padding: 0.4em;
+      background: white;
+      font-weight: bold;
+      color: $color-primary;
+      line-height: 21px;
+    }
+  }
+
+  input, select {
+    display: block;
+    margin-bottom: 1em;
+    width: 100%;
+    border-radius: 4px;
+    height: 52px;
+    border: 1px solid #dadce0;
+    padding: 12px 14px;
+    outline: none;
+
+    &:focus, &:active {
+      border: 2px solid $color-primary !important;
+      box-shadow: none !important;
+    }
+  }
+
+}

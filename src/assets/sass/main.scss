@@ -1,4 +1,18 @@
+@import "imports/variables";
+@import "imports/navbar";
+@import "imports/forms";
+@import "imports/buttons";
 @import "imports/helpers";
+
+body{
+  color: rgba(0,0,0,0.87);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.card-panel.rounded {
+  border-radius: 15px;
+}
 
 .list-products {
   background: white;
@@ -12,7 +26,8 @@
     align-items: center;
     padding: 1em;
     border-bottom: 2px solid #fafafa;
-    p{
+
+    p {
       flex-grow: 2;
       margin: 0;
     }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
-import MainContent from "../../components/MainContent";
-import ProductsProvider from "./context/ProductsProvider";
-import ProductsContext from './context/products-context'
-import ListProducts from "./components/ListProducts";
-import { getAllProducts } from "../../services/ProductsRequestService";
+import ProductsProvider from './context/ProductsProvider';
+import ProductsContext from './context/products-context';
+import ListProducts from './components/ListProducts';
+import { getAllProducts } from '../../services/ProductsRequestService';
 
 class Index extends Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class Index extends Component {
 
     this.state = {
       products: []
-    }
+    };
   }
 
   componentDidMount() {
@@ -31,23 +30,21 @@ class Index extends Component {
   render() {
     const { products } = this.state;
     return (
-      <MainContent>
-        <div className="container margin-top-50">
-          <div className="row">
-            <div className="col s12">
-              <ProductsProvider>
-                <ProductsContext.Consumer>
-                  {(toggleFetching, fetching) => (
-                    <>
-                      {!fetching && (<ListProducts {...{ products, fetching }} />)}
-                    </>
-                  )}
-                </ProductsContext.Consumer>
-              </ProductsProvider>
-            </div>
+      <div className="container margin-top-50">
+        <div className="row">
+          <div className="col s12">
+            <ProductsProvider>
+              <ProductsContext.Consumer>
+                {(toggleFetching, fetching) => (
+                  <>
+                    {!fetching && (<ListProducts {...{ products, fetching }} />)}
+                  </>
+                )}
+              </ProductsContext.Consumer>
+            </ProductsProvider>
           </div>
         </div>
-      </MainContent>
+      </div>
     );
   }
 }
