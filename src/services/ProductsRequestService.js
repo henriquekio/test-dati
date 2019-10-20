@@ -6,7 +6,7 @@ const getAllProducts = () =>
 const getProducts = (id = 0) =>
   httpDefault.get('products', { params: { cmd: 'details', id } });
 
-const createProducts = (params = {}) => httpDefault.post('products', ...params);
+const createProducts = (params = {}) => httpDefault.post('products', params);
 
 const updateProducts = (params = {}, id = 0) => httpDefault.put(`products/${id}`, params);
 

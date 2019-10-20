@@ -7,7 +7,7 @@
     margin-bottom: .5em;
     color: #999ea2;
     font-size: 16px;
-    line-height: 21px;
+    line-height: 30px;
     left: 1.75rem !important;
 
     &.active {
@@ -16,6 +16,7 @@
       background: white;
       font-weight: bold;
       color: $color-primary;
+      line-height: 21px;
     }
   }
 

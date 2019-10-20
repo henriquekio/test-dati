@@ -3,6 +3,16 @@
   outline: none;
   padding: .6em 2em;
   border: 1.3px solid $color-primary;
+  cursor: pointer;
+  transition: all .3s;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .btn__default {
