@@ -1,9 +1,36 @@
 import React from 'react';
+import swal from 'sweetalert';
 import { numberFormat } from '../../../helpers/helpers';
 
 
 const ListProducts = (props) => {
   const { products } = props;
+
+  console.log(props);
+
+  const deleteProduct = (product = {}) => {
+    const { description, id } = product;
+    swal({
+      title: 'Deseja realmente remover esse produto?',
+      text: description,
+      icon: 'warning',
+      buttons: {
+        cancel: {
+          text: 'Não',
+          visible: true
+        },
+        confirm: {
+          text: 'Sim',
+          visible: true
+        }
+      }
+    }).then(value => {
+      if (value) {
+        props.removeProduct(id);
+      }
+    });
+  };
+
   return (
     <ul className="list-products browser-default">
       {
@@ -24,7 +51,7 @@ const ListProducts = (props) => {
                 </button>
               </li>
               <li>
-                <button type="button">
+                <button onClick={() => deleteProduct(product)} type="button">
                   <i className="material-icons red-text">delete</i>
                 </button>
               </li>
