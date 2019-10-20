@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import CurrencyInput from 'react-currency-input';
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert';
 
 const FormProducts = props => {
   const [description, setDescription] = useState('');
@@ -12,34 +11,25 @@ const FormProducts = props => {
   const [qty, setQty] = useState(0);
   const [value, setValue] = useState(0);
 
-  const submitForm = async event => {
-    try {
-      event.preventDefault();
-      const product = {
-        description,
-        short_description,
-        code,
-        status,
-        qty,
-        value
-      };
+  const submitForm = event => {
+    event.preventDefault();
+    const product = {
+      description,
+      short_description,
+      code,
+      status,
+      qty,
+      value
+    };
 
-      await props.saveProducts(product);
-      swal('Sucesso!', 'Produto cadastrado com sucesso!', 'success');
-    } catch (e) {
-      swal(
-        'Oppss...',
-        'Sentimos muito. Houve um problema interno. Por favor tente novamente mais tarde',
-        'error'
-      );
-    }
+    props.saveProducts(product);
   };
 
   return (
     <form onSubmit={submitForm} className="card-panel rounded form-default">
       <div className="row">
         <div className="input-field col s12">
-          <label htmlFor="description" className="active">
+          <label htmlFor="description">
             Descrição Completa
           </label>
           <input
@@ -52,7 +42,7 @@ const FormProducts = props => {
           />
         </div>
         <div className="input-field col s12">
-          <label htmlFor="short_description" className="active">
+          <label htmlFor="short_description">
             Breve Descrição
           </label>
           <input
@@ -65,7 +55,7 @@ const FormProducts = props => {
           />
         </div>
         <div className="input-field col s12">
-          <label htmlFor="code" className="active">
+          <label htmlFor="code">
             Código do Produto
           </label>
           <input
