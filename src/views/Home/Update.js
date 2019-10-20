@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import swal from 'sweetalert';
 import FormProducts from './components/FormProducts';
 import ProductContext from './context/products-context';
-import { createProducts } from '../../services/ProductsRequestService';
+import { updateProducts } from '../../services/ProductsRequestService';
 
-class Create extends Component {
+class Update extends Component {
   // eslint-disable-next-line react/sort-comp, react/static-property-placement
   static contextType = ProductContext;
 
-  createProducts = async (products = {}) => {
+  updateProducts = async (products = {}) => {
     try {
       this.context.toggleFetching(true);
-      await createProducts(products);
-      swal('Sucesso!', 'Produto cadastrado com sucesso!', 'success').then(() =>
+      await updateProducts(products);
+      swal('Sucesso!', 'Produto alterado com sucesso!', 'success').then(() =>
         this.props.history.push('/')
       );
     } catch (e) {
@@ -31,8 +31,8 @@ class Create extends Component {
       <div className="container margin-top-50">
         <div className="row">
           <div className="col s12 l8 offset-l2">
-            <h5>Cadastro de Produtos</h5>
-            <FormProducts {...{ saveProducts: this.createProducts }} />
+            <h5>Alterar Produtos</h5>
+            <FormProducts {...{ saveProducts: this.updateProducts }} />
           </div>
         </div>
       </div>
@@ -40,4 +40,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default Update;

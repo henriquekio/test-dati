@@ -39,11 +39,12 @@ body{
     display: inline;
     padding: 0 .5em;
 
-    button {
+    button, a {
       border: none;
       background: transparent;
       padding: 0;
       cursor: pointer;
+      text-decoration: none;
     }
   }
 }
