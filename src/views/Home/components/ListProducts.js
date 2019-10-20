@@ -1,12 +1,11 @@
 import React from 'react';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 import { numberFormat } from '../../../helpers/helpers';
 
 
 const ListProducts = (props) => {
   const { products } = props;
-
-  console.log(props);
 
   const deleteProduct = (product = {}) => {
     const { description, id } = product;
@@ -56,9 +55,9 @@ const ListProducts = (props) => {
                 </button>
               </li>
               <li>
-                <button type="button">
+                <Link to={`/produtos/${product.id}`}>
                   <i className="material-icons green-text">create</i>
-                </button>
+                </Link>
               </li>
             </ul>
           </li>

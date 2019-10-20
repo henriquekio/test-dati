@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function NavbarDefault() {
   useEffect(() => {
@@ -21,7 +21,7 @@ function NavbarDefault() {
     <>
       <nav className="navbar">
         <div className="nav-wrapper container">
-          <a href="sass.html" className="brand-logo">Logo</a>
+          <Link to="/" className="brand-logo">Logo</Link>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
               <a className="dropdown-trigger" href="#!" data-target="produtos">Produtos<i
@@ -32,10 +32,10 @@ function NavbarDefault() {
       </nav>
       <ul id="produtos" className="dropdown-content">
         <li>
-          <NavLink to='/'>Lista</NavLink>
+          <NavLink className="blue-text" to='/'>Lista</NavLink>
         </li>
         <li>
-          <NavLink to='/produtos'>Novo Produto</NavLink>
+          <NavLink className="blue-text" to='/produtos/novo'>Novo Produto</NavLink>
         </li>
       </ul>
     </>

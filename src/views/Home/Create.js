@@ -13,7 +13,7 @@ class Create extends Component {
       this.context.toggleFetching(true);
       await createProducts(products);
       swal('Sucesso!', 'Produto cadastrado com sucesso!', 'success').then(() =>
-        this.props.history.push('/contratos')
+        this.props.history.push('/')
       );
     } catch (e) {
       swal(
