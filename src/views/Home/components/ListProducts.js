@@ -1,13 +1,11 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { numberFormat } from '../../../helpers/helpers';
 import { Link } from 'react-router-dom';
+import { numberFormat } from '../../../helpers/helpers';
 
 
 const ListProducts = (props) => {
   const { products } = props;
-
-  console.log(props);
 
   const deleteProduct = (product = {}) => {
     const { description, id } = product;

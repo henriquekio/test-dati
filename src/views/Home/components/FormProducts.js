@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CurrencyInput from 'react-currency-input';
 import { Link } from 'react-router-dom';
 
 const FormProducts = props => {
+  const [id, setId] = useState(0);
   const [description, setDescription] = useState('');
   const [short_description, setShort_description] = useState('');
   const [code, setCode] = useState('');
@@ -11,9 +12,23 @@ const FormProducts = props => {
   const [qty, setQty] = useState(0);
   const [value, setValue] = useState(0);
 
+  useEffect(() => {
+    const { product, productId } = props;
+    if (productId > 0 && product.id) {
+      setId(product.id);
+      setDescription(product.description);
+      setShort_description(product.short_description);
+      setCode(product.code);
+      setStatus(product.status);
+      setQty(product.qty);
+      setValue(parseFloat(product.value));
+    }
+  }, [props]);
+
   const submitForm = event => {
     event.preventDefault();
     const product = {
+      id,
       description,
       short_description,
       code,
@@ -29,7 +44,10 @@ const FormProducts = props => {
     <form onSubmit={submitForm} className="card-panel rounded form-default">
       <div className="row">
         <div className="input-field col s12">
-          <label htmlFor="description">
+          <label
+            htmlFor="description"
+            className={description.length > 0 ? 'active' : ''}
+          >
             Descrição Completa
           </label>
           <input
@@ -42,7 +60,10 @@ const FormProducts = props => {
           />
         </div>
         <div className="input-field col s12">
-          <label htmlFor="short_description">
+          <label
+            htmlFor="short_description"
+            className={short_description.length > 0 ? 'active' : ''}
+          >
             Breve Descrição
           </label>
           <input
@@ -55,7 +76,7 @@ const FormProducts = props => {
           />
         </div>
         <div className="input-field col s12">
-          <label htmlFor="code">
+          <label htmlFor="code" className={code.length > 0 ? 'active' : ''}>
             Código do Produto
           </label>
           <input
