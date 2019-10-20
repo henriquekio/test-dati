@@ -10,6 +10,6 @@ const createProducts = (params = {}) => httpDefault.post('products', params);
 
 const updateProducts = (params = {}, id = 0) => httpDefault.put(`products/${id}`, params);
 
-const deleteProducts = (params = {}, id = 0) => httpDefault.delete(`products/${id}`, params);
+const deleteProducts = (id = 0) => httpDefault.delete(`products/${id}`);
 
 export { getAllProducts, getProducts, createProducts, updateProducts, deleteProducts };

@@ -3,9 +3,15 @@ import swal from 'sweetalert';
 import ProductsProvider from './context/ProductsProvider';
 import ProductsContext from './context/products-context';
 import ListProducts from './components/ListProducts';
-import { getAllProducts } from '../../services/ProductsRequestService';
+import {
+  deleteProducts,
+  getAllProducts
+} from '../../services/ProductsRequestService';
 
 class Index extends Component {
+  // eslint-disable-next-line react/sort-comp, react/static-property-placement
+  static contextType = ProductsContext;
+
   constructor(props) {
     super(props);
 
@@ -23,7 +29,28 @@ class Index extends Component {
       const products = await getAllProducts();
       this.setState({ products });
     } catch (e) {
-      swal('Opps!', 'Pedimos desculpas. Estamos passando por instabilidades. Por favor tente novamente mais tarde.', 'error');
+      swal(
+        'Opps!',
+        'Pedimos desculpas. Estamos passando por instabilidades. Por favor tente novamente mais tarde.',
+        'error'
+      );
+    }
+  };
+
+  removeProduct = async (id = 0) => {
+    try {
+      this.context.toggleFetching();
+      await deleteProducts(id);
+      await this.getAllProducts();
+      swal('Removido com sucesso', '', 'success');
+    } catch (e) {
+      swal(
+        'Opps!',
+        'Pedimos desculpas. Estamos passando por instabilidades. Por favor tente novamente mais tarde.',
+        'error'
+      );
+    } finally {
+      this.context.toggleFetching(false);
     }
   };
 
@@ -35,9 +62,17 @@ class Index extends Component {
           <div className="col s12">
             <ProductsProvider>
               <ProductsContext.Consumer>
-                {(toggleFetching, fetching) => (
+                {({fetching}) => (
                   <>
-                    {!fetching && (<ListProducts {...{ products, fetching }} />)}
+                    {!fetching && (
+                      <ListProducts
+                        {...{
+                          products,
+                          fetching,
+                          removeProduct: this.removeProduct
+                        }}
+                      />
+                    )}
                   </>
                 )}
               </ProductsContext.Consumer>
