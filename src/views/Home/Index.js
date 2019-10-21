@@ -62,14 +62,15 @@ class Index extends Component {
           <div className="col s12">
             <ProductsProvider>
               <ProductsContext.Consumer>
-                {({fetching}) => (
+                {({fetching, toggleFetching}) => (
                   <>
                     {!fetching && (
                       <ListProducts
                         {...{
                           products,
                           fetching,
-                          removeProduct: this.removeProduct
+                          removeProduct: this.removeProduct,
+                          toggleFetching,
                         }}
                       />
                     )}
