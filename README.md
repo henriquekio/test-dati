@@ -1,4 +1,4 @@
-#Tecnologias utilizadas
+# Tecnologias utilizadas
 
 * [React](https://pt-br.reactjs.org/)
 * [Sass](https://sass-lang.com/)
@@ -10,11 +10,11 @@
 * [Preetier](https://prettier.io/)
 * [React Lottie](https://www.npmjs.com/package/react-lottie)
 
-##Aplicação
+## Aplicação
 
 O desafio proposto era realizar um CRUD consumindo uma API com um endpoint de produtos utilizando React. Foi proposto também a criação de filtros para a listagem de produtos.
 
-##Executar Projeto
+## Executar Projeto
 
 1. Faça o clone da aplicação
 1. Execute ```npm install``` ou ```yarn install```
@@ -22,11 +22,11 @@ O desafio proposto era realizar um CRUD consumindo uma API com um endpoint de pr
 1. Para executá-lo em ambiente de desenvolvimento ```npm run build``` ou ```yarn build```
 1. Pronto! :metal:
 
-##Fluxo
+## Fluxo
 
 * Após carregada a tela inicial possui a listagem de produtos cadastrados. Com icones para as açõe do CRUD. As ações para cada item são *visualizar, deletar e alterar*.
 * Para cadastrar um novo produto, o link se encontra na barra de navegação, em que é possível acessar o formulário e a listagem de produtos. 
 
-##Obervações
+## Obervações
 
 * Pelo fluxo total da aplicação não foi necessário utilização Redux. Como se tratam de poucos dados foi feito o uso do [React Context API](https://pt-br.reactjs.org/docs/context.html) para o compartilhamento de dados entre componentes.
