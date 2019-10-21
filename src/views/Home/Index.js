@@ -16,7 +16,9 @@ class Index extends Component {
     super(props);
 
     this.state = {
-      products: []
+      products: [],
+      filteredProducts: [],
+      filter: 'description'
     };
   }
 
@@ -27,7 +29,7 @@ class Index extends Component {
   getAllProducts = async () => {
     try {
       const products = await getAllProducts();
-      this.setState({ products });
+      this.setState({ products, filteredProducts: products });
     } catch (e) {
       swal(
         'Opps!',
@@ -54,20 +56,57 @@ class Index extends Component {
     }
   };
 
+  onChangeFilter = ({ target }) => {
+    const { products, filter } = this.state;
+    const filteredProducts = products.filter(
+      value =>
+        value[filter].toLowerCase().indexOf(target.value.toLowerCase()) > -1
+    );
+    this.setState({ filteredProducts });
+  };
+
+  onChangeOption = ({ target }) => {
+    this.setState({ filter: target.value });
+  };
+
   render() {
-    const { products } = this.state;
+    const { filteredProducts } = this.state;
     return (
       <div className="container margin-top-50">
         <div className="row">
           <div className="col s12">
+            <form className="form-default">
+              <div className="row">
+                <div className="input-field col s12 l8">
+                  <label htmlFor="palavra">Palavra Chave</label>
+                  <input
+                    onChange={this.onChangeFilter}
+                    type="text"
+                    id="palavra"
+                    className="browser-default"
+                    name="palavra"
+                  />
+                </div>
+                <div className="input-field col s12 l4">
+                  <label htmlFor="field" className="active">
+                    Filtro
+                  </label>
+                  <select onChange={this.onChangeOption}>
+                    <option value="description">Descrição</option>
+                    <option value="short_description">Breve Descrição</option>
+                    <option value="code">Código</option>
+                  </select>
+                </div>
+              </div>
+            </form>
             <ProductsProvider>
               <ProductsContext.Consumer>
-                {({fetching, toggleFetching}) => (
+                {({ fetching, toggleFetching }) => (
                   <>
                     {!fetching && (
                       <ListProducts
                         {...{
-                          products,
+                          products: filteredProducts,
                           fetching,
                           removeProduct: this.removeProduct,
                           toggleFetching,
