@@ -17,6 +17,7 @@ O desafio proposto era realizar um CRUD consumindo uma API com um endpoint de pr
 ## Executar Projeto
 
 1. Faça o clone da aplicação
+1. Verifique se seu npm ou yarn estão atualizados. *Versão recomendada do node:* **12.13.0 Lts**. 
 1. Execute ```npm install``` ou ```yarn install```
 1. Para ambiente de desenvolvimento execute ```npm run start``` ou ```yarn start```
 1. Para gerar a versão de produção execute ```npm run build``` ou ```yarn build```
@@ -24,7 +25,7 @@ O desafio proposto era realizar um CRUD consumindo uma API com um endpoint de pr
 
 ## Fluxo
 
-* Após carregada a tela inicial possui a listagem de produtos cadastrados. Com icones para as açõe do CRUD. As ações para cada item são *visualizar, deletar e alterar*.
+* Após carregada a tela inicial possui a listagem de produtos cadastrados. Com icones para as ações do CRUD. As ações para cada item são *visualizar, deletar e alterar*.
 * Para cadastrar um novo produto, o link se encontra na barra de navegação, em que é possível acessar o formulário e a listagem de produtos. 
 
 ## Obervações
