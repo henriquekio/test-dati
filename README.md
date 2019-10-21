@@ -19,7 +19,7 @@ O desafio proposto era realizar um CRUD consumindo uma API com um endpoint de pr
 1. Faça o clone da aplicação
 1. Execute ```npm install``` ou ```yarn install```
 1. Para ambiente de desenvolvimento execute ```npm run start``` ou ```yarn start```
-1. Para executá-lo em ambiente de desenvolvimento ```npm run build``` ou ```yarn build```
+1. Para gerar a versão de produção execute ```npm run build``` ou ```yarn build```
 1. Pronto! :metal:
 
 ## Fluxo
