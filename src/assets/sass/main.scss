@@ -29,6 +29,7 @@ body {
     &.disable {
       background: #eeeeee;
       opacity: .5;
+      transition: all .4s;
     }
 
     p {

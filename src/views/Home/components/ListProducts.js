@@ -3,7 +3,6 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { numberFormat } from '../../../helpers/helpers';
 import ProductDetails from './ProductDetails';
-import { updateProducts } from '../../../services/ProductsRequestService';
 
 const ListProducts = props => {
   const { products } = props;
@@ -41,16 +40,8 @@ const ListProducts = props => {
     }
   };
 
-  const changeStatus = async (product = {}) => {
-    try {
-      // eslint-disable-next-line no-param-reassign
-      const status = product.status === 'enable' ? 'disable' : 'enable';
-      props.toggleFetching();
-      await updateProducts({ status }, product.id);
-      await props.getAllProducts();
-    } finally {
-      props.toggleFetching(false);
-    }
+  const changeStatus = async (product = {}, event) => {
+    props.changeStatusProduct(product);
   };
 
   return (
@@ -95,10 +86,11 @@ const ListProducts = props => {
               </li>
               <li>
                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-                <div className="switch" onClick={() => changeStatus(product)}>
+                <div className="switch">
                   <label>
                     Inativo
                     <input
+                      onClick={() => changeStatus(product)}
                       defaultChecked={product.status === 'enable'}
                       type="checkbox"
                     />

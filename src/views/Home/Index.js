@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import ProductsProvider from './context/ProductsProvider';
 import ProductsContext from './context/products-context';
 import ListProducts from './components/ListProducts';
-import { deleteProducts, getAllProducts } from '../../services/ProductsRequestService';
+import { deleteProducts, getAllProducts, updateProducts } from '../../services/ProductsRequestService';
 
 class Index extends Component {
   // eslint-disable-next-line react/sort-comp, react/static-property-placement
@@ -34,7 +34,7 @@ class Index extends Component {
         'Pedimos desculpas. Estamos passando por instabilidades. Por favor tente novamente mais tarde.',
         'error'
       );
-    }finally {
+    } finally {
       this.context.toggleFetching(false);
     }
   };
@@ -67,6 +67,25 @@ class Index extends Component {
 
   onChangeOption = ({ target }) => {
     this.setState({ filter: target.value });
+  };
+
+  changeStatusProduct = async (product = {}) => {
+    try {
+      const status = product.status === 'enable' ? 'disable' : 'enable';
+      const productAltered = await updateProducts({ status }, product.id);
+      this.setState(state => {
+        const filteredProducts = state.filteredProducts.map(item => {
+          if (item.id === productAltered.id) {
+            return productAltered;
+          }
+
+          return item;
+        });
+        return { filteredProducts };
+      });
+    } catch (e) {
+
+    }
   };
 
   render() {
@@ -110,7 +129,8 @@ class Index extends Component {
                           fetching,
                           removeProduct: this.removeProduct,
                           toggleFetching,
-                          getAllProducts: this.getAllProducts
+                          getAllProducts: this.getAllProducts,
+                          changeStatusProduct: this.changeStatusProduct
                         }}
                       />
                     )}
