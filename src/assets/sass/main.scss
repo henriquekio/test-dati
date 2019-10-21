@@ -27,6 +27,11 @@ body{
     padding: 1em;
     border-bottom: 2px solid #fafafa;
 
+    &.disable{
+      background: #fafafa;
+      opacity: .5;
+    }
+
     p {
       flex-grow: 2;
       margin: 0;

@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { numberFormat } from '../../../helpers/helpers';
 import ProductDetails from './ProductDetails';
+import { updateProducts } from '../../../services/ProductsRequestService';
 
 
 const ListProducts = (props) => {
@@ -33,11 +34,23 @@ const ListProducts = (props) => {
     });
   };
 
-  const toggleDetails = async (id = 0) => {
+  const toggleDetails = (id = 0) => {
     if (detail === id) {
       setDetail('');
     } else {
       setDetail(id);
+    }
+  };
+
+  const changeStatus = async (product = {}) => {
+    try {
+      // eslint-disable-next-line no-param-reassign
+      const status = product.status === 'enable' ? 'disable' : 'enable';
+      props.toggleFetching();
+      await updateProducts({ status }, product.id);
+      await props.getAllProducts();
+    } finally {
+      props.toggleFetching(false);
     }
   };
 
@@ -46,7 +59,7 @@ const ListProducts = (props) => {
       {
         products.map((product, index) => (
           <React.Fragment key={product.id}>
-            <li className="list-products__item">
+            <li className={`list-products__item ${product.status === 'disable' ? 'disable' : ''}`}>
               <p>
                 {product.short_description}
                 <br/>
@@ -70,6 +83,16 @@ const ListProducts = (props) => {
                   <Link to={`/produtos/${product.id}`}>
                     <i className="material-icons green-text">create</i>
                   </Link>
+                </li>
+                <li>
+                  <div className="switch" onClick={() => changeStatus(product)}>
+                    <label>
+                      Inativo
+                      <input checked={product.status === 'enable'} type="checkbox"/>
+                      <span className="lever"/>
+                      Ativo
+                    </label>
+                  </div>
                 </li>
               </ul>
             </li>

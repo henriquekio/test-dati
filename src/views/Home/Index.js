@@ -71,6 +71,7 @@ class Index extends Component {
                           fetching,
                           removeProduct: this.removeProduct,
                           toggleFetching,
+                          getAllProducts: this.getAllProducts
                         }}
                       />
                     )}
