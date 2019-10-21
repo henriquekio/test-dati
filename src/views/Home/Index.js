@@ -3,10 +3,7 @@ import swal from 'sweetalert';
 import ProductsProvider from './context/ProductsProvider';
 import ProductsContext from './context/products-context';
 import ListProducts from './components/ListProducts';
-import {
-  deleteProducts,
-  getAllProducts
-} from '../../services/ProductsRequestService';
+import { deleteProducts, getAllProducts } from '../../services/ProductsRequestService';
 
 class Index extends Component {
   // eslint-disable-next-line react/sort-comp, react/static-property-placement
@@ -28,6 +25,7 @@ class Index extends Component {
 
   getAllProducts = async () => {
     try {
+      this.context.toggleFetching();
       const products = await getAllProducts();
       this.setState({ products, filteredProducts: products });
     } catch (e) {
@@ -36,6 +34,8 @@ class Index extends Component {
         'Pedimos desculpas. Estamos passando por instabilidades. Por favor tente novamente mais tarde.',
         'error'
       );
+    }finally {
+      this.context.toggleFetching(false);
     }
   };
 

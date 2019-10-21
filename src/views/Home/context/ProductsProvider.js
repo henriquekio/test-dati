@@ -12,7 +12,7 @@ class ProductsProvider extends Component {
   }
 
   toggleFetching = (fetching = true) => {
-    this.setState({ fetching });
+    this.setState({ fetching: fetching });
   };
 
   render() {
