@@ -1,0 +1,29 @@
+@media screen and (max-width: 768px) {
+  .list-products {
+    padding: 0;
+
+    &__item {
+      margin: 1em 0;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      flex-direction: column;
+
+      p {
+        margin: 1em 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .list-products {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &__item p {
+      margin: 0;
+    }
+  }
+}
