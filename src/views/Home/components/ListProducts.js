@@ -40,7 +40,7 @@ const ListProducts = props => {
     }
   };
 
-  const changeStatus = async (product = {}, event) => {
+  const changeStatus = async (product = {}) => {
     props.changeStatusProduct(product);
   };
 
@@ -104,6 +104,11 @@ const ListProducts = props => {
           {detail === index && <ProductDetails {...{ product }} />}
         </React.Fragment>
       ))}
+      {products.length === 0 && (
+        <li>
+          <h6 className="grey-text center-align darken-2">Não há nada para mostrar.</h6>
+        </li>
+      )}
     </ul>
   );
 };

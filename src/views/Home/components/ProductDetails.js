@@ -3,7 +3,7 @@ import React from 'react';
 const ProductDetails = (props) => {
   const { product } = props;
   return (
-    <li className="list-products__item">
+    <li className="list-products__item detail">
       <table>
         <tbody>
         <tr>
