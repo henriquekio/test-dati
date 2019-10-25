@@ -31,7 +31,7 @@ class MainContent extends Component {
       <>
         <NavbarDefault/>
         <main>
-          {fetching && <Loader/>}
+          {/*{fetching && <Loader/>}*/}
           {this.props.children}
         </main>
       </>

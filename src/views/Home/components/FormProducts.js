@@ -1,7 +1,8 @@
-/* eslint-disable camelcase */
+/* eslint-disable camelcase, no-prototype-builtins */
 import React, { useState, useEffect } from 'react';
 import CurrencyInput from 'react-currency-input';
 import { Link } from 'react-router-dom';
+import ValidateMessage from '../../../components/ValidateMessage';
 
 const FormProducts = props => {
   const [id, setId] = useState(0);
@@ -11,9 +12,11 @@ const FormProducts = props => {
   const [status, setStatus] = useState('enable');
   const [qty, setQty] = useState(0);
   const [value, setValue] = useState(0);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const { product, productId } = props;
+    const { product, productId, errors } = props;
+    setErrors(errors);
     if (productId > 0 && product.id) {
       setId(product.id);
       setDescription(product.description);
@@ -40,6 +43,14 @@ const FormProducts = props => {
     props.saveProducts(product);
   };
 
+  const onFocusInput = event => {
+    if (errors.hasOwnProperty(event.target.name)) {
+      const newErrors = errors;
+      delete newErrors[event.target.name];
+      setErrors(newErrors);
+    }
+  };
+
   return (
     <form onSubmit={submitForm} className="card-panel rounded form-default">
       <div className="row">
@@ -53,11 +64,17 @@ const FormProducts = props => {
           <input
             value={description}
             onChange={e => setDescription(e.target.value)}
+            onFocus={onFocusInput}
             type="text"
             id="description"
-            className="browser-default"
+            className={`browser-default ${
+              errors.hasOwnProperty('description') ? 'invalid' : ''
+            }`}
             name="description"
           />
+          {errors.hasOwnProperty('description') && (
+            <ValidateMessage errorMessage={errors.description} />
+          )}
         </div>
         <div className="input-field col s12">
           <label
@@ -71,9 +88,14 @@ const FormProducts = props => {
             onChange={e => setShort_description(e.target.value)}
             type="text"
             id="short_description"
-            className="browser-default"
+            className={`browser-default ${
+              errors.hasOwnProperty('short_description') ? 'invalid' : ''
+            }`}
             name="short_description"
           />
+          {errors.hasOwnProperty('short_description') && (
+            <ValidateMessage errorMessage={errors.description} />
+          )}
         </div>
         <div className="input-field col s12">
           <label htmlFor="code" className={code.length > 0 ? 'active' : ''}>
@@ -84,9 +106,14 @@ const FormProducts = props => {
             onChange={e => setCode(e.target.value)}
             type="text"
             id="code"
-            className="browser-default"
+            className={`browser-default ${
+              errors.hasOwnProperty('code') ? 'invalid' : ''
+            }`}
             name="code"
           />
+          {errors.hasOwnProperty('code') && (
+            <ValidateMessage errorMessage={errors.description} />
+          )}
         </div>
         <div className="input-field col s12">
           <label htmlFor="status" className="active">
@@ -96,12 +123,17 @@ const FormProducts = props => {
             value={status}
             onChange={e => setStatus(e.target.value)}
             id="status"
-            className="browser-default"
+            className={`browser-default ${
+              errors.hasOwnProperty('status') ? 'invalid' : ''
+            }`}
             name="status"
           >
             <option value="enable">Habilitado</option>
             <option value="disable">Desabilitado</option>
           </select>
+          {errors.hasOwnProperty('status') && (
+            <ValidateMessage errorMessage={errors.description} />
+          )}
         </div>
         <div className="input-field col s12 m6">
           <label htmlFor="qty" className="active">
@@ -112,9 +144,14 @@ const FormProducts = props => {
             onChange={e => setQty(e.target.value)}
             type="number"
             id="qty"
-            className="browser-default"
+            className={`browser-default ${
+              errors.hasOwnProperty('qty') ? 'invalid' : ''
+            }`}
             name="qty"
           />
+          {errors.hasOwnProperty('qty') && (
+            <ValidateMessage errorMessage={errors.description} />
+          )}
         </div>
         <div className="input-field col s12 m6">
           <label htmlFor="value" className="active">
@@ -125,10 +162,15 @@ const FormProducts = props => {
             value={value}
             decimalSeparator=","
             thousandSeparator="."
-            className="browser-default"
+            className={`browser-default ${
+              errors.hasOwnProperty('valor') ? 'invalid' : ''
+            }`}
             name="value"
             id="value"
           />
+          {errors.hasOwnProperty('valor') && (
+            <ValidateMessage errorMessage={errors.description} />
+          )}
         </div>
         <div className="input-field col s12">
           <Link to="/" className="btn__default--ghost">
